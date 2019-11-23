@@ -63,15 +63,21 @@ BEGIN
         );
 	
 	testing: process is -- process to loop over each boolean combination to test the result
-		constant P: integer := 2**16 - 1; -- upper limit for 16 bit
 	begin
-		for I in 0 to P loop
-		 A <= std_logic_vector(to_unsigned(I, 16)); 
-			for J in 0 to P loop
-				B <= std_logic_vector(to_unsigned(J, 16));
-				wait for 10ns;
-			end loop;
-		end loop;
+		-- 1
+		A <= x"0000";
+		B <= x"0000";
+		wait for 10ns;
+		
+		-- 2
+		A <= x"1234";
+		B <= x"5678";
+		wait for 10ns;
+		
+		-- 3
+		A <= x"1234";
+		B <= x"0000";
+		wait for 10ns;
 	end process testing;
 
 END;
