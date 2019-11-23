@@ -46,11 +46,9 @@ end trafo;
 
 architecture Behavioral of trafo is
     COMPONENT addop
-    PORT(
-         A : IN  std_logic_vector(15 downto 0);
-         B : IN  std_logic_vector(15 downto 0);
-         Y : OUT  std_logic_vector(15 downto 0)
-        );
+    PORT ( A : in  STD_LOGIC_VECTOR (15 downto 0);
+           B : in  STD_LOGIC_VECTOR (15 downto 0);
+           Y : out  STD_LOGIC_VECTOR (15 downto 0));
     END COMPONENT;
 	  COMPONENT mulop
     PORT(
