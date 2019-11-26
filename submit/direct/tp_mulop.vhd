@@ -1,43 +1,23 @@
 --------------------------------------------------------------------------------
--- Company: 
--- Engineer:
+-- Engineer:		Muhammad Anjum
 --
 -- Create Date:   15:17:35 11/23/2019
--- Design Name:   
 -- Module Name:   /nas/ei/share/TUEIEDA/LabHDL/2019w/ge46bod/submit/direct/tp_mulop.vhd
--- Project Name:  idea
--- Target Device:  
--- Tool versions:  
--- Description:   
+-- Project Name:  IDEA Direct
 -- 
 -- VHDL Test Bench Created by ISE for module: mulop
--- 
--- Dependencies:
--- 
--- Revision:
--- Revision 0.01 - File Created
--- Additional Comments:
---
--- Notes: 
--- This testbench has been automatically generated using types std_logic and
--- std_logic_vector for the ports of the unit under test.  Xilinx recommends
--- that these types always be used for the top-level I/O of a design in order
--- to guarantee that the testbench will bind correctly to the post-implementation 
--- simulation model.
 --------------------------------------------------------------------------------
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
-use IEEE.numeric_std.all;
  
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
---USE ieee.numeric_std.ALL;
+USE ieee.numeric_std.ALL;
  
 ENTITY tp_mulop IS
 END tp_mulop;
  
 ARCHITECTURE behavior OF tp_mulop IS 
- 
     -- Component Declaration for the Unit Under Test (UUT)
     COMPONENT mulop
     PORT(
@@ -47,16 +27,12 @@ ARCHITECTURE behavior OF tp_mulop IS
         );
     END COMPONENT;
     
-
    --Inputs
    signal I_1 : std_logic_vector(15 downto 0) := (others => '0');
    signal I_2 : std_logic_vector(15 downto 0) := (others => '0');
-
  	--Outputs
    signal O_1 : std_logic_vector(15 downto 0);
- 
 BEGIN
- 
 	-- Instantiate the Unit Under Test (UUT)
    uut: mulop PORT MAP (
           I_1 => I_1,
