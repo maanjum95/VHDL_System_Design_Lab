@@ -1,29 +1,11 @@
 --------------------------------------------------------------------------------
--- Company: 
--- Engineer:
+-- Engineer:		Muhammad Anjum
 --
--- Create Date:   18:00:49 11/23/2019
--- Design Name:   
+-- Create Date:   18:00:49 11/23/2019  
 -- Module Name:   /nas/ei/share/TUEIEDA/LabHDL/2019w/ge46bod/submit/direct/tb_trafo.vhd
--- Project Name:  idea
--- Target Device:  
--- Tool versions:  
--- Description:   
+-- Project Name:  IDEA Direct  
 -- 
 -- VHDL Test Bench Created by ISE for module: trafo
--- 
--- Dependencies:
--- 
--- Revision:
--- Revision 0.01 - File Created
--- Additional Comments:
---
--- Notes: 
--- This testbench has been automatically generated using types std_logic and
--- std_logic_vector for the ports of the unit under test.  Xilinx recommends
--- that these types always be used for the top-level I/O of a design in order
--- to guarantee that the testbench will bind correctly to the post-implementation 
--- simulation model.
 --------------------------------------------------------------------------------
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
@@ -133,6 +115,5 @@ BEGIN
 		wait for 10ns;
 	
 	end process testing;
- 
 
 END;
