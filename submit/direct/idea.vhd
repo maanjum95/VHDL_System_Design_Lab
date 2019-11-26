@@ -1,30 +1,17 @@
 ----------------------------------------------------------------------------------
--- Company: 
--- Engineer: 
+-- Engineer: 		Muhammad Anjum
 -- 
 -- Create Date:     
--- Design Name: 
 -- Module Name:    idea - Structural 
--- Project Name: 
--- Target Devices: 
--- Tool versions: 
--- Description: 
---
--- Dependencies: 
---
--- Revision: 
--- Revision 0.01 - File Created
--- Additional Comments: 
---
+-- Project Name: 	 IDEA Direct
 ----------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.std_logic_unsigned.all;
-use IEEE.NUMERIC_STD.ALL;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
---use IEEE.NUMERIC_STD.ALL;
+use IEEE.NUMERIC_STD.ALL;
 
 -- Uncomment the following library declaration if instantiating
 -- any Xilinx primitives in this code.
@@ -94,9 +81,11 @@ begin
 	variable tmp_key: std_logic_vector(127 downto 0); -- KEY : in  STD_LOGIC_VECTOR (127 downto 0);
 	variable idx: integer;
 	begin
+		-- initialization of variables
 		tmp_key := KEY;
 		idx:= 0;
 		
+		-- loop to generate the required keys
 		key_gen_loop: for I in 0 to 6 loop
 			for J in 0 to 7 loop
 				Z(idx) <= tmp_key(127 - J * 16 downto 112 - J * 16);
@@ -158,7 +147,6 @@ begin
 	out_trafo: trafo PORT MAP(X1=>W81, X2=>W82, X3=>W83, X4=>W84,
 									Z1=>Z(48), Z2=>Z(49), Z3=>Z(50), Z4=>Z(51),
 									Y1=>Y_1, Y2=>Y_2, Y3=>Y_3, Y4=>Y_4);
-
 
 end Structural;
 

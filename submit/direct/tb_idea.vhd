@@ -1,29 +1,11 @@
 --------------------------------------------------------------------------------
--- Company: 
--- Engineer:
+-- Engineer:		Muhammad Anjum
 --
 -- Create Date:   19:27:37 11/23/2019
--- Design Name:   
 -- Module Name:   /nas/ei/share/TUEIEDA/LabHDL/2019w/ge46bod/submit/direct/tb_idea.vhd
--- Project Name:  idea
--- Target Device:  
--- Tool versions:  
--- Description:   
+-- Project Name:  IDEA Direct 
 -- 
 -- VHDL Test Bench Created by ISE for module: idea
--- 
--- Dependencies:
--- 
--- Revision:
--- Revision 0.01 - File Created
--- Additional Comments:
---
--- Notes: 
--- This testbench has been automatically generated using types std_logic and
--- std_logic_vector for the ports of the unit under test.  Xilinx recommends
--- that these types always be used for the top-level I/O of a design in order
--- to guarantee that the testbench will bind correctly to the post-implementation 
--- simulation model.
 --------------------------------------------------------------------------------
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
@@ -65,7 +47,6 @@ ARCHITECTURE behavior OF tb_idea IS
    signal Y_4 : std_logic_vector(15 downto 0);
  
 BEGIN
- 
 	-- Instantiate the Unit Under Test (UUT)
    uut: idea PORT MAP (
           KEY => KEY,
