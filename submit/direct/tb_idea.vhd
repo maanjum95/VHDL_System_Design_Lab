@@ -77,6 +77,15 @@ BEGIN
 		X_4 <= x"0000";
 		KEY <= x"00000000000000000000000000000000";
 		wait for 10ns;
+		
+		-- 3
+		X_1 <= x"0123";
+		X_2 <= x"4567";
+		X_3 <= x"89AB";
+		X_4 <= x"CDEF";
+		KEY <= x"0123456789ABCDEF0123456789ABCDEF";
+		-- Expected OUTPUT E063 00A6 77BA 7854
+		wait for 10ns;
 	end process testing;
 
 END;
