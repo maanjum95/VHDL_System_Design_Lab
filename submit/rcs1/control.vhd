@@ -1,28 +1,16 @@
 ----------------------------------------------------------------------------------
--- Company: 
--- Engineer: 
+-- Engineer: 	Muhammad A. Anjum
 -- 
--- Create Date:     
--- Design Name: 
+-- Create Date:      
 -- Module Name:    control - Behavioral 
 -- Project Name: 
--- Target Devices: 
--- Tool versions: 
--- Description: 
---
--- Dependencies: 
---
--- Revision: 
--- Revision 0.01 - File Created
--- Additional Comments: 
---
 ----------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
---use IEEE.NUMERIC_STD.ALL;
+use IEEE.NUMERIC_STD.ALL;
 
 -- Uncomment the following library declaration if instantiating
 -- any Xilinx primitives in this code.
@@ -39,8 +27,56 @@ entity control is
 end control;
 
 architecture Behavioral of control is
-
+	signal state: std_logic_vector(3 downto 0);
 begin
+	process (CLK, START) is
+	begin
+		if (CLK'event and CLK = '1') then
+			-- when the encryption is started
+			if START = '1' then
+				state <= "0000";
+				ROUND <= "0000";
+				READY <= '0';
+				S <= '0';
+				EN <= '1';	
+			else
+				-- state machine
+				case state is 
+					when "0000" => 
+						state <= "0001";
+						ROUND <= "0001";
+						S <= '1';
+					when "0001" =>
+						state <= "0010";
+						ROUND <= "0010";
+					when "0010" =>
+						state <= "0011";
+						ROUND <= "0011";
+					when "0011" =>
+						state <= "0100";
+						ROUND <= "0100";
+					when "0100" =>
+						state <= "0101";
+						ROUND <= "0101";
+					when "0101" =>
+						state <= "0110";
+						ROUND <= "0110";
+					when "0110" =>
+						state <= "0111";
+						ROUND <= "0111";
+					when "0111" =>
+						state <= "1000";
+						ROUND <= "1000";
+						
+						READY <= '1';
+						EN <= '0';
+					when others => 
+						state <= "1000";
+						ROUND <= "1000";
+				end case;
+			end if;
+		end if;
+	end process;
 
 
 end Behavioral;
