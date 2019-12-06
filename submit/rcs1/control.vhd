@@ -32,49 +32,49 @@ begin
 	process (CLK, START) is
 	begin
 		if (CLK'event and CLK = '1') then
-			-- when the encryption is started
-			if START = '1' then
-				state <= "0000";
-				ROUND <= "0000";
-				READY <= '0';
-				S <= '0';
-				EN <= '1';	
-			else
-				-- state machine
-				case state is 
-					when "0000" => 
-						state <= "0001";
-						ROUND <= "0001";
-						S <= '1';
-					when "0001" =>
-						state <= "0010";
-						ROUND <= "0010";
-					when "0010" =>
-						state <= "0011";
-						ROUND <= "0011";
-					when "0011" =>
-						state <= "0100";
-						ROUND <= "0100";
-					when "0100" =>
-						state <= "0101";
-						ROUND <= "0101";
-					when "0101" =>
-						state <= "0110";
-						ROUND <= "0110";
-					when "0110" =>
-						state <= "0111";
-						ROUND <= "0111";
-					when "0111" =>
-						state <= "1000";
-						ROUND <= "1000";
-						
-						READY <= '1';
-						EN <= '0';
-					when others => 
-						state <= "1000";
-						ROUND <= "1000";
-				end case;
-			end if;
+			-- state machine
+			case state is 
+				when "0000" => -- round 1
+					state <= "0001";
+					ROUND <= "0001";
+					S <= '1';
+				when "0001" => -- round 2
+					state <= "0010";
+					ROUND <= "0010";
+				when "0010" => -- round 3
+					state <= "0011";
+					ROUND <= "0011";
+				when "0011" => -- round 4
+					state <= "0100";
+					ROUND <= "0100";
+				when "0100" => -- round 5
+					state <= "0101";
+					ROUND <= "0101";
+				when "0101" => -- round 6
+					state <= "0110";
+					ROUND <= "0110";
+				when "0110" => -- round 7
+					state <= "0111";
+					ROUND <= "0111";
+				when "0111" => -- round 8
+					state <= "1000";
+					ROUND <= "1000";
+					
+					READY <= '1';
+					EN <= '0';
+				when "1000" => -- transformation and output
+					-- starting a new encryption
+					if START = '1' then
+							state <= "0000";
+							ROUND <= "0000";
+							READY <= '0';
+							S <= '0';
+							EN <= '1';
+					end if;
+				when others => 
+					state <= "1000";
+					ROUND <= "1000";		
+			end case;
 		end if;
 	end process;
 
