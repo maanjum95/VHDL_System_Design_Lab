@@ -75,10 +75,19 @@ BEGIN
 
 	testing: process is
 	begin
+	   -- 1
 		INIT <= '1';
+		TRAFO <= '0';
 		wait for CLK_period*2;
 		INIT <= '0';
-		wait for 300ns;
+		wait for 100ns;
+		
+		-- 2
+		INIT <= '1';
+		TRAFO <= '1';
+		wait for CLK_period*2;
+		INIT <= '0';
+		wait for 100ns;
 	end process testing;
 
 END;

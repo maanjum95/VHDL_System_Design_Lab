@@ -34,10 +34,15 @@ entity datapath is
            EN346 : in  STD_LOGIC;
            EN78 : in  STD_LOGIC;
            S : in  STD_LOGIC_VECTOR (1 downto 0);
+			  S_T : in  STD_LOGIC_VECTOR (1 downto 0);
            Y1 : out  STD_LOGIC_VECTOR (15 downto 0);
            Y2 : out  STD_LOGIC_VECTOR (15 downto 0);
            Y3 : out  STD_LOGIC_VECTOR (15 downto 0);
-           Y4 : out  STD_LOGIC_VECTOR (15 downto 0));
+           Y4 : out  STD_LOGIC_VECTOR (15 downto 0);
+			  Y1_TRAFO : out  STD_LOGIC_VECTOR (15 downto 0);
+           Y2_TRAFO : out  STD_LOGIC_VECTOR (15 downto 0);
+           Y3_TRAFO : out  STD_LOGIC_VECTOR (15 downto 0);
+           Y4_TRAFO : out  STD_LOGIC_VECTOR (15 downto 0));
 end datapath;
 
 architecture Behavioral of datapath is
@@ -79,7 +84,7 @@ begin
 	mux_1: mux4x1 PORT MAP(D0=>X1, D1=>X4, D2=>Z5, D3=>Z6, S=>S, O=>W1);
 	mux_2: mux4x1 PORT MAP(D0=>Z1, D1=>Z4, D2=>Q5, D3=>Q8, S=>S, O=>W2);
 	mux_3: mux4x1 PORT MAP(D0=>X3, D1=>X2, D2=>Q6, D3=>Q7, S=>S, O=>W3);
-	mux_4: mux4x1 PORT MAP(D0=>Z3, D1=>Z2, D2=>D147, D3=>D147, S=>S, O=>W4);
+	mux_4: mux4x1 PORT MAP(D0=>Z3, D1=>Z2, D2=>D147, D3=>D147, S=>S_T, O=>W4);
 
 	-- register set
 	R1: reg16bit PORT MAP(D=>D147, CLK=>CLK, EN=>EN125, Q=>Q1);
@@ -102,6 +107,11 @@ begin
 	addop_1: addop PORT MAP(A=>W3, B=>W4, Y=>D238);
 	mulop_1: mulop PORT MAP(I_1=>W1, I_2=>W2, O_1=>D147);
 	
+	-- transformation data path
+	Y1_TRAFO <= Q1;
+	Y2_TRAFO <= Q2;
+	Y3_TRAFO <= Q3;
+	Y4_TRAFO <= Q4;
 	
 end Behavioral;
 

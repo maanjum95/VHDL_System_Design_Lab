@@ -82,10 +82,15 @@ architecture Structural of clockedround is
            EN346 : in  STD_LOGIC;
            EN78 : in  STD_LOGIC;
            S : in  STD_LOGIC_VECTOR (1 downto 0);
+			  S_T : in  STD_LOGIC_VECTOR (1 downto 0);
            Y1 : out  STD_LOGIC_VECTOR (15 downto 0);
            Y2 : out  STD_LOGIC_VECTOR (15 downto 0);
            Y3 : out  STD_LOGIC_VECTOR (15 downto 0);
-           Y4 : out  STD_LOGIC_VECTOR (15 downto 0));
+           Y4 : out  STD_LOGIC_VECTOR (15 downto 0);
+			  Y1_TRAFO : out  STD_LOGIC_VECTOR (15 downto 0);
+           Y2_TRAFO : out  STD_LOGIC_VECTOR (15 downto 0);
+           Y3_TRAFO : out  STD_LOGIC_VECTOR (15 downto 0);
+           Y4_TRAFO : out  STD_LOGIC_VECTOR (15 downto 0));
 	END COMPONENT;
 	signal EN125, EN346, EN78: std_logic;
 	signal S, S_T : std_logic_vector(1 downto 0);
@@ -97,7 +102,8 @@ begin
 											  Z1=>Z1, Z2=>Z2, Z3=>Z3, Z4=>Z4,
 											  Z5=>Z5, Z6=>Z6,
 											  CLK=>CLK, EN125=>EN125, EN346=>EN346, EN78=>EN78,
-											  S=>S,
-											  Y1=>Y1, Y2=>Y2, Y3=>Y3, Y4=>Y4);
+											  S=>S, S_T=>S_T,
+											  Y1=>Y1, Y2=>Y2, Y3=>Y3, Y4=>Y4,
+											  Y1_TRAFO=>Y1_TRAFO, Y2_TRAFO=>Y2_TRAFO, Y3_TRAFO=>Y3_TRAFO, Y4_TRAFO=>Y4_TRAFO);
 end Structural;
 

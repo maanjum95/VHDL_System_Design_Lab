@@ -114,6 +114,7 @@ BEGIN
 	testing: process is
 	begin
 		INIT <= '0' after 1ns;
+		TRAFO <= '1';
 		-- 1
 		X1 <= x"0000";
 		X2 <= x"0000";

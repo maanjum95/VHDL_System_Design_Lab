@@ -45,13 +45,22 @@ begin
 					state <= "010";
 					EN346 <= '1';
 					S <= "01";
+					S_T <= "01" xor ('0' & TRAFO);
 				when "010" => 
 					state <= "011";
 					EN346 <= '0';
-				when "011" => 
-					state <= "100";
-					EN78 <= '1';
-					S <= "10";
+				when "011" =>
+					if (TRAFO = '1') then
+						state <= "110";
+						RESULT <= '1';
+						S <= "11";
+						S_T <= "11" xor ('0' & TRAFO);
+					else
+						state <= "100";
+						EN78 <= '1';
+						S <= "10";
+						S_T <= "10" xor ('0' & TRAFO);
+					end if;
 				when "100" => 
 					state <= "101";
 					EN78 <= '0';
@@ -59,6 +68,7 @@ begin
 					state <= "110";
 					RESULT <= '1';
 					S <= "11";
+					S_T <= "11" xor ('0' & TRAFO);
 				when "110" => 
 					state <= "111";
 					RESULT <= '0';
@@ -66,8 +76,11 @@ begin
 					if INIT = '1' then
 						state <= "000";
 						EN125 <= '1';
+						EN346 <= '0';
+						EN78 <= '0';
+						RESULT <= '0';
 						S <= "00";
-						S_T <= "00";
+						S_T <= "00" xor ('0' & TRAFO);
 					end if;
 				when others => 
 					state <= "111";
