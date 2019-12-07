@@ -30,7 +30,7 @@ entity control is
 end control;
 
 architecture Behavioral of control is
-	signal state: std_logic_vector(2 downto 0);
+	signal state: std_logic_vector(2 downto 0):= (others => '1');
 begin
 	process (CLK, INIT) is
 	begin
