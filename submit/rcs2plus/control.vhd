@@ -30,60 +30,66 @@ entity control is
 end control;
 
 architecture Behavioral of control is
-	signal state: std_logic_vector(2 downto 0):= (others => '1');
+	signal state: std_logic_vector(1 downto 0):= (others => '1');
 begin
 	process (CLK, INIT) is
 	begin
 		-- increment the state
 		if (CLK'event and CLK = '1') then
 			-- state machine
+			-- this new state in rcs2plus is 
+			-- now compareable to multiplexercontrol
 			case state is 
-				when "000" => 
-					state <= "001";
-					EN125 <= '0';
-				when "001" => 
-					state <= "010";
-					EN346 <= '1';
+				when "00" =>
+					state <= "01";
 					S <= "01";
-					S_T <= "01" xor ('0' & TRAFO);
-				when "010" => 
-					state <= "011";
-					EN346 <= '0';
-				when "011" =>
-					if (TRAFO = '1') then
-						state <= "110";
-						RESULT <= '1';
+					S_T <= "01";
+					
+					-- if trafo is set or not
+					if TRAFO = '1' then
+						S_T <= "00";		
+					end if;
+					
+					EN125 <= '0';
+					EN346 <= '1';
+				when "01" =>
+					if TRAFO = '1' then
+						state <= "11";
 						S <= "11";
-						S_T <= "11" xor ('0' & TRAFO);
-					else
-						state <= "100";
-						EN78 <= '1';
+						S_T <= "10";
+						
+						RESULT <= '1';
+					else 							
+						state <= "10";
 						S <= "10";
-						S_T <= "10" xor ('0' & TRAFO);
+						S_T <= "10";
+						
+						EN78 <= '1';
 					end if;
-				when "100" => 
-					state <= "101";
-					EN78 <= '0';
-				when "101" => 
-					state <= "110";
-					RESULT <= '1';
+					
+					EN346 <= '0';
+				when "10" =>
+					state <= "11";
 					S <= "11";
-					S_T <= "11" xor ('0' & TRAFO);
-				when "110" => 
-					state <= "111";
+					S_T <= "11";
+					
+					EN78 <= '0';
+					RESULT <= '1';
+				when "11" =>
 					RESULT <= '0';
-				when "111" => 
 					if INIT = '1' then
-						state <= "000";
-						EN125 <= '1';
-						EN346 <= '0';
-						EN78 <= '0';
-						RESULT <= '0';
+						state <= "00";
 						S <= "00";
-						S_T <= "00" xor ('0' & TRAFO);
+						S_T <= "00";
+						
+						if TRAFO = '1' then
+							S_T <= "01";
+						end if;
+						
+						EN125 <= '1';
 					end if;
-				when others => 
-					state <= "111";
+				when others =>
+					state <= "11";
 			end case;
 		end if;
 	end process; 
