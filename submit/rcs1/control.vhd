@@ -73,7 +73,11 @@ begin
 					end if;
 				when others => 
 					state <= "1000";
-					ROUND <= "1000";		
+					ROUND <= "1000";
+					
+					READY <= '1';
+					S <= '1';
+					EN <= '0';
 			end case;
 		end if;
 	end process;
