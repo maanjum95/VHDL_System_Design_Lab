@@ -30,8 +30,8 @@ end roundcounter;
 
 architecture Behavioral of roundcounter is
 	type FSM is (sleep, setup, calc);
-	signal state: FSM;
-	signal RND: std_logic_vector (3 downto 0);
+	signal state: FSM := sleep;
+	signal RND: std_logic_vector (3 downto 0):= "1000";
 begin
 	process (CLK) is
 	begin
