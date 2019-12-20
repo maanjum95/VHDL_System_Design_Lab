@@ -27,7 +27,7 @@ entity control is
 end control;
 
 architecture Behavioral of control is
-	signal state: std_logic_vector(3 downto 0);
+	signal state: std_logic_vector(3 downto 0) := "1000";
 begin
 	process (CLK, START) is
 	begin
@@ -74,10 +74,6 @@ begin
 				when others => 
 					state <= "1000";
 					ROUND <= "1000";
-					
-					READY <= '1';
-					S <= '1';
-					EN <= '0';
 			end case;
 		end if;
 	end process;
